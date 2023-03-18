@@ -1,0 +1,16 @@
+bug report
+--未修复---------------------------------------------------------------------------
+Game Class 里的+++++++++++++++++++++++++++++++++++
+吃不到 插旗的 yn 导致没有对地图进行修改（现在把Game class 里的 click的else if先改成了else
+Board Class里的++++++++++++++++++++++++
+autoExpand 的无限循环 （ 先注释了 Game里的 autoExpand
+
+----已修复-----------------------------------------------------------------------
+Game Class 里的+++++++++++++++++++++++++++++++++
+firstclick后没有print马上又需要行列数
+print里的边界值问题
+print的打印问题
+click中 firstclick 与afterFirstClick的边界问题
+
+Board Class里的+++++++++++++++++++++++++++++++++++++++
+boardInit 没有把firstClick 的格子 flip
