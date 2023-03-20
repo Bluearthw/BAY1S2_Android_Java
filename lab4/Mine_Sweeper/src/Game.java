@@ -4,14 +4,15 @@ public class Game implements TextInterface {
 
     private Board board;
     private boolean firstClick;
-    private int row, column;
+    private int row, column, mineNumber;
     private boolean endGame;
 
-    public Game(int w, int l, int m) {
-        column = w;
-        row = l;
-        board = new Board(w, l, m);
-        firstPrint(w, l);
+    public Game(/*int w, int l, int m*/) {
+//        column = w;
+//        row = l;
+//        mineNumber = m;
+
+
         firstClick = true;
         endGame = false;
     }
@@ -28,10 +29,12 @@ public class Game implements TextInterface {
     }
 
     public void gameLose() {
+
+        print();
         System.out.println("you lose");
         System.out.println("Do u want to start a new game?[y/n]");
         Scanner sc = new Scanner(System.in);
-        String flag = sc.nextLine();
+        String flag = sc.next();
         if (flag.equals("n"))
             endGame = true;
         else
@@ -39,7 +42,10 @@ public class Game implements TextInterface {
     }
 
     public void reset() {
+        board.boardReset();//因为第一点包含初始化，所以只需要把格子全部翻回去
+
         firstClick = true;
+        endGame = false;
     }
 
     //每点一次，做一次有没有踩雷的操作，计算周围的雷数，如果是空的，做一次自动展开
@@ -48,31 +54,38 @@ public class Game implements TextInterface {
         Scanner sc = new Scanner(System.in);
         if (firstClick) {
 
-            while(true){                                      //boundary check
+            while (firstClick) {
+                //boundary check
+                System.out.println("please choose level:'e':easy, 'n':normal, 'h':hard");
+                String level=sc.nextLine();
+                board = new Board(level);
+                int boardRow = board.getRow();
+                int boardColumn = board.getColumn();
+                firstPrint(boardRow, boardColumn);
                 System.out.println("please enter the row");
                 int row = sc.nextInt();
                 System.out.println("please enter the column");
                 int column = sc.nextInt();
 
-                if (boudaryOutCheck(row, column)){
+                if (boudaryOutCheck(row, column)) {
                     System.out.println("please input an integer within the range");
-                }
-                else{
-                    board.boardInit(row, column);
-                    firstClick = false;
-                    break;
-                }
+                } else {
 
+                    board.boardInit(row,column);
+                    if (board.getCells()[row][column].getMineAround() == 0)
+                        board.autoExpand(row, column);
+                    firstClick = false;
+
+                }
 
             }
-
         } else {                                        //after first click
             System.out.println("please enter the row");
             int row = sc.nextInt();
             System.out.println("please enter the column");
             int column = sc.nextInt();
             System.out.println("flag?[y/n]");
-            String flag = sc.nextLine();
+            String flag = sc.next();
             if (flag.equals("y")) {
                 board.getCells()[row][column].toggleFlag();
 //            } else if (flag.equals("n")) {
@@ -85,7 +98,8 @@ public class Game implements TextInterface {
                         gameLose();
                     } else {
                         board.getCells()[row][column].setIsFlipped();
-//                        board.autoExpand(row, column);
+                        if (board.getCells()[row][column].getMineAround() == 0)
+                            board.autoExpand(row, column);
                     }
                 }
             }
@@ -94,7 +108,8 @@ public class Game implements TextInterface {
         print();
     }
 
-    //插旗
+
+    //不要了
     public void rightClick() {
 
     }
@@ -114,9 +129,9 @@ public class Game implements TextInterface {
     //////////////output///////////////
     public void print() {
         System.out.println();
-        for (int l = 0; l < row; l++) {
+        for (int l = 0; l < board.getRow(); l++) {
             System.out.println();
-            for (int w = 0; w < column; w++) {
+            for (int w = 0; w < board.getColumn(); w++) {
                 boolean isFlipped = board.getCells()[l][w].getIsFlipped();
                 boolean isMine = board.getCells()[l][w].getIsMine();
                 boolean isFlagged = board.getCells()[l][w].getIsFlag();
@@ -142,10 +157,12 @@ public class Game implements TextInterface {
             }
 
         }
+        System.out.println();
+        System.out.println();
     }
 
-    public boolean boudaryOutCheck(int x, int y) {
-        if (x >= board.getRow() || y >= board.getColumn() || x < 0 || y < 0) {
+    public boolean boudaryOutCheck(int r, int c) {
+        if (r >= board.getRow() || c >= board.getColumn() || r < 0 || c < 0) {
             return true;
         } else
             return false;
@@ -163,11 +180,11 @@ public class Game implements TextInterface {
         for (int l = 0; l < row; l++) {
             System.out.println();
             for (int w = 0; w < column; w++) {
-
-//                System.out.print("1 ");
                 System.out.print("■ ");
             }
 
         }
+        System.out.println();
+        System.out.println();
     }
 }

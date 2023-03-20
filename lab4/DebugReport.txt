@@ -1,16 +1,27 @@
 bug report
 --未修复---------------------------------------------------------------------------
 Game Class 里的+++++++++++++++++++++++++++++++++++
-吃不到 插旗的 yn 导致没有对地图进行修改（现在把Game class 里的 click的else if先改成了else
+clicke()的 autoExpand的条件似乎可以省略
 Board Class里的++++++++++++++++++++++++
-autoExpand 的无限循环 （ 先注释了 Game里的 autoExpand
 
+??????
+增加难度后 的 打印 以及 firstclick不爆炸 问题( hard下 最大值除以30可能到不了列的最大值
 ----已修复-----------------------------------------------------------------------
+
 Game Class 里的+++++++++++++++++++++++++++++++++
 firstclick后没有print马上又需要行列数
 print里的边界值问题
 print的打印问题
 click中 firstclick 与afterFirstClick的边界问题
+解决了第一次点击没有展开的问题
+吃不到 插旗的 yn 导致没有对地图进行修改（把 nextline改成 next()
+gameLose 的输出问题（reset
 
 Board Class里的+++++++++++++++++++++++++++++++++++++++
 boardInit 没有把firstClick 的格子 flip
+没在boardinit时计算周围雷的个数， calculate时没有用正确的 index
+
+autoExpand 的无限循环 （ 加入条件，原因是在已翻开的的空白格横跳
+autoexpand 把有雷的格子也翻开了（把上条解决了就解决了
+
+

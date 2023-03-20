@@ -26,6 +26,12 @@ public class Cell {
             isFlag = true;
     }
 
+    public void reset(){
+        isFlipped = false;
+        isMine = false;
+        isFlag = false;
+        mineAround = 0;
+    }
 
     public boolean getIsMine() {
         return this.isMine;
