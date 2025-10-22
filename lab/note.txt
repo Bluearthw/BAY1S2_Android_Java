@@ -1,0 +1,18 @@
+in fragment
+we do not have setcontentview
+
+we only have inflater like:
+
+	Your class extends Fragment and you have setContentView(R.layout.about_screen);. setContentView is a method of Activity class.
+
+Instead inflate about_screen.xml in onCreateView of Fragment
+
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+    View rootView = inflater.inflate(R.layout.about_screeen, container, false);
+    return rootView;
+}
+
+
+and  if we name like View root = ... ,we have to do root.findViewById

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ImageExample</string>
+    <string name="pick_image">Pick Image</string>
+    <string name="submit_image">Submit image to DB</string>
+    <string name="retrieve_image">Retrieve image from DB</string>
+    <string name="selected_image">Selected image</string>
+    <string name="retrieved_image">Retrieved image</string>
+</resources>

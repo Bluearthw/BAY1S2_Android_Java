@@ -1,0 +1,15 @@
+always map, flatMap, mapTo, optional... think about the type everyline you can use sout if it is no time
+
+ask you what is the result
+
+avoid get all the database things into your small APP 
+do the selection in the DAtabase
+
+
+inherent 
+streaming lamda
+interface 
+collection
+thread
+design pattern
+abstract

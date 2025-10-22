@@ -1,0 +1,23 @@
+structured programming to objecte-oriented
+	To reduce the cost to maintain a project
+
+c++ is specific pointer( when comes to inheritance if assign sth lagre than the memory arae, it slice and lose sth
+also have multiple inheritance
+
+java use non-specific pointer and only single inheritance
+
+static
+--------------------------------------
+MPost extends Post
+Post p
+p = new MPost
+
+when static it goes to Post first 
+p.getxx() (goes to the Post
+but when it runs , it goes to its own class first
+system.out.printlin(p.getxx()) ( goes to the MPost
+------------------------
+
+interface can only have functions
+
+abstract makes you look down to find a function. An empty class can not because it excutes during the same level.

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Tutorial</string>
+
+    <string-array name="menu_items">
+        <item>Espresso</item>
+        <item>Cappuccino</item>
+        <item>Latte</item>
+    </string-array>
+    <string name="lblTopping"> order </string>
+    <string name="cbSuger">Sugar</string>
+    <string name="cbCream">Whip Cream</string>
+    <string name="tvQuantity">1</string>
+</resources>
